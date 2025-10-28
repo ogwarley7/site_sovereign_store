@@ -1,0 +1,405 @@
+
+:root {
+  /* Cores (8+) */
+  --color-primary: #FFC700;  
+  --color-secondary: #2D2D2D;  
+  --color-accent: #FF4B00;     
+  --color-neutral-0: #FFFFFF;  
+  --color-neutral-1: #F5F5F5;  
+  --color-neutral-2: #999999;  
+  --color-success: #4CAF50;   
+  --color-error: #F44336;      
+
+  /* Tipografia (5+) */
+  --font-family-display: 'Oswald', sans-serif;
+  --font-family-body: 'Inter', sans-serif;
+  --font-size-h1: 3.5rem;
+  --font-size-h2: 2.5rem;
+  --font-size-h3: 1.5rem;
+  --font-size-body: 1rem;
+  --font-size-small: 0.8rem;
+  --line-height-base: 1.5;
+
+  /* Espaçamento Modular (6+) */
+  --spacing-xs: 8px;
+  --spacing-s: 16px;
+  --spacing-m: 24px;
+  --spacing-l: 32px;
+  --spacing-xl: 48px;
+  --spacing-xxl: 64px;
+  
+  /* Breakpoints (5+) */
+  --bp-sm: 600px;
+  --bp-md: 840px;
+  --bp-lg: 1024px;
+  --bp-xl: 1440px;
+}
+
+/* ======================================= */
+/* 2. BASE RESET & TIPOGRAFIA */
+/* ======================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-base);
+    color: var(--color-secondary);
+    background-color: var(--color-neutral-0);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-family-display);
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-s);
+}
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* ======================================= */
+/* 3. LAYOUT & GRID SYSTEM (12 COLUNAS) */
+/* ======================================= */
+
+/* Layout Principal (CSS Grid) */
+.site-layout {
+    display: grid;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    overflow-x: hidden; /* Evita scroll lateral no mobile */
+}
+
+/* Container de Largura Fixa */
+.container {
+    max-width: var(--bp-xl);
+    margin: 0 auto;
+    padding: 0 var(--spacing-s);
+}
+
+/* CSS Grid (12 Colunas) */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--spacing-m);
+}
+
+/* Sistema de Colunas Responsivas (Mobile-first) */
+.col-12 { grid-column: span 12; }
+.col-sm-6 { grid-column: span 6; } /* Tablet pequeno */
+
+@media (min-width: 840px) { /* Breakpoint MD */
+    .col-md-4 { grid-column: span 4; }
+    .col-md-8 { grid-column: span 8; }
+}
+
+@media (min-width: 1024px) { /* Breakpoint LG (Desktop) */
+    .col-lg-3 { grid-column: span 3; } /* 4 itens por linha */
+    .col-lg-6 { grid-column: span 6; } /* 2 itens por linha */
+}
+
+/* ======================================= */
+/* 4. NAVEGAÇÃO & HEADER (Flexbox) */
+/* ======================================= */
+.main-header {
+    background-color: var(--color-secondary);
+    padding: var(--spacing-s) 0;
+    grid-area: header;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--color-primary);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-h3);
+    font-weight: 700;
+}
+
+/* Menu Desktop (Flexbox) */
+.main-nav > ul {
+    display: flex;
+    gap: var(--spacing-l);
+}
+
+.main-nav a {
+    color: var(--color-neutral-0);
+    text-transform: uppercase;
+    padding: var(--spacing-xs) 0;
+    transition: color 0.2s;
+    display: block;
+}
+
+.main-nav a:hover {
+    color: var(--color-primary);
+}
+
+/* Submenu Dropdown */
+.has-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-primary);
+    min-width: 150px;
+    padding: var(--spacing-xs) 0;
+    z-index: 100;
+}
+
+.has-dropdown:hover .dropdown-menu {
+    display: block; /* Revela no hover em desktop */
+}
+
+.dropdown-menu li a {
+    color: var(--color-secondary);
+    padding: var(--spacing-xs) var(--spacing-s);
+}
+
+.dropdown-menu li a:hover {
+    background-color: rgba(45, 45, 45, 0.1); /* Um toque de preto no hover */
+}
+
+/* Menu Hambúrguer (Escondido no Desktop) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: var(--font-size-h3);
+    color: var(--color-neutral-0);
+    cursor: pointer;
+}
+
+/* ======================================= */
+/* 5. NAVEGAÇÃO MOBILE (Breakpoint MD e abaixo) */
+/* ======================================= */
+@media (max-width: 1023px) { /* Breakpoint abaixo de LG */
+    
+    .menu-toggle {
+        display: block;
+    }
+
+    .main-nav {
+        /* Posição fora da tela */
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 70%;
+        height: 100%;
+        background-color: var(--color-secondary);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-out;
+        padding-top: var(--spacing-xxl);
+        z-index: 99;
+    }
+
+    .nav-open .main-nav {
+        transform: translateX(0); /* Abre o menu */
+    }
+    
+    .main-nav > ul {
+        flex-direction: column;
+        gap: var(--spacing-m);
+        padding: 0 var(--spacing-m);
+    }
+    
+    .main-nav a {
+        padding: var(--spacing-s) 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Dropdown em Mobile: pode ser aberto via JS ou permanecer como submenu */
+    .dropdown-menu {
+        position: static;
+        background: none;
+        padding-left: var(--spacing-m);
+        margin-top: var(--spacing-xs);
+    }
+    .dropdown-menu li a {
+        color: var(--color-neutral-2);
+        padding: var(--spacing-xs) 0;
+        border: none;
+    }
+    
+    /* Overlay quando o menu está aberto */
+    .nav-open body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 98;
+    }
+}
+
+/* ======================================= */
+/* 6. COMPONENTES (BOTÕES, CARDS, FORMS) */
+/* ======================================= */
+
+/* Botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-s) var(--spacing-l);
+    border: 2px solid var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    font-family: var(--font-family-display);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn:active {
+    background-color: var(--color-accent);
+    color: var(--color-neutral-0);
+    border-color: var(--color-accent);
+}
+
+.btn:disabled {
+    background-color: var(--color-neutral-2);
+    border-color: var(--color-neutral-2);
+    color: var(--color-neutral-1);
+    cursor: not-allowed;
+}
+
+/* Cards de Produto */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-neutral-1);
+    border: 1px solid var(--color-neutral-2);
+    padding: var(--spacing-s);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%; /* Garante altura igual dentro do grid */
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+    font-size: var(--font-size-h3);
+    margin: var(--spacing-xs) 0;
+}
+
+.card-price {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-h3);
+    color: var(--color-accent);
+    font-weight: bold;
+    margin-top: auto; /* Empurra para o final do card */
+}
+
+/* Formulários */
+.form-control {
+    margin-bottom: var(--spacing-m);
+}
+
+.form-input {
+    width: 100%;
+    padding: var(--spacing-s);
+    border: 1px solid var(--color-neutral-2);
+    background-color: var(--color-neutral-0);
+    color: var(--color-secondary);
+    transition: border-color 0.2s;
+}
+
+.form-input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+/* Validação Visual (Erro) */
+.form-input.is-invalid {
+    border-color: var(--color-error);
+}
+.feedback-message {
+    display: none;
+    font-size: var(--font-size-small);
+    margin-top: 4px;
+}
+.form-input.is-invalid + .feedback-message {
+    display: block;
+    color: var(--color-error);
+}
+
+/* Componentes de Feedback (Alerts) */
+.alert {
+    padding: var(--spacing-s);
+    margin-bottom: var(--spacing-m);
+    border: 1px solid transparent;
+    font-size: var(--font-size-body);
+}
+
+.alert-success {
+    background-color: #E8F5E9; /* Verde claro */
+    border-color: var(--color-success);
+    color: var(--color-success);
+}
+
+/* Badges e Tags */
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: var(--font-size-small);
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 4px;
+}
+
+.badge-new {
+    background-color: var(--color-accent);
+    color: var(--color-neutral-0);
+}
+
+.badge-sale {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+/* ======================================= */
+/* 7. FOOTER */
+/* ======================================= */
+.main-footer {
+    grid-area: footer;
+    background-color: var(--color-secondary);
+    color: var(--color-neutral-2);
+    text-align: center;
+}
