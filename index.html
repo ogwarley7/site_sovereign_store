@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Store | Streetwear Brand</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="site-layout">
+
+        <header class="main-header">
+            <div class="container header-content">
+                <a href="/" class="logo">SOVEREIGN STORE</a>
+                
+                <nav class="main-nav" id="main-nav">
+                    <ul>
+                        <li class="nav-item"><a href="#lancamentos">Lançamentos</a></li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#produtos">Produtos <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Jaquetas</a></li>
+                                <li><a href="#">Camisetas</a></li>
+                                <li><a href="#">Acessórios</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="#colecoes">Coleções</a></li>
+                        <li class="nav-item"><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+
+                <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" onclick="document.body.classList.toggle('nav-open')">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            
+            <div class="container" style="padding-top: var(--spacing-l);">
+                <div class="alert alert-success">
+                    🎉 **Novidade:** Frete grátis em compras acima de R$ 300!
+                </div>
+            </div>
+
+            <section id="produtos" class="container" style="padding: var(--spacing-xxl) 0;">
+                <h2 class="col-12" style="margin-bottom: var(--spacing-xl);">🔥 Produtos em Destaque</h2>
+                
+                <div class="grid">
+                    
+                    <div class="col-12 col-lg-3">
+                        <article class="product-card">
+                            <span class="badge badge-new">Novo</span>
+                            <h3 class="card-title">Moletom "Ruler" Preto</h3>
+                            <p class="card-price">R$ 299,90</p>
+                            <button class="btn btn-primary" style="margin-top: var(--spacing-s);">Comprar</button>
+                        </article>
+                    </div>
+
+                    <div class="col-12 col-lg-3">
+                         <article class="product-card">
+                            <span class="badge badge-sale">-20%</span>
+                            <h3 class="card-title">Boné "Crown" Amarelo</h3>
+                            <p class="card-price">R$ 95,90</p>
+                            <button class="btn btn-primary" style="margin-top: var(--spacing-s);">Comprar</button>
+                        </article>
+                    </div>
+
+                    <div class="col-12 col-lg-3">
+                        <article class="product-card">
+                            <h3 class="card-title">Camiseta Oversized Branca</h3>
+                            <p class="card-price">R$ 149,90</p>
+                            <button class="btn btn-primary" style="margin-top: var(--spacing-s);">Comprar</button>
+                        </article>
+                    </div>
+                    
+                    <div class="col-12 col-lg-3">
+                        <article class="product-card">
+                            <h3 class="card-title">Calça Cargo Sovereign</h3>
+                            <p class="card-price">R$ 349,90</p>
+                            <button class="btn btn-primary" style="margin-top: var(--spacing-s);">Comprar</button>
+                        </article>
+                    </div>
+
+                </div>
+
+            </section>
+            
+            <section id="newsletter" class="container" style="padding-bottom: var(--spacing-xxl);">
+                <div class="grid">
+                    <div class="col-12 col-lg-6">
+                        <h2>Assine nossa Newsletter</h2>
+                        <form action="#" method="POST" style="margin-top: var(--spacing-m);">
+                            <div class="form-control">
+                                <label for="email">Seu Melhor E-mail:</label>
+                                <input type="email" id="email" class="form-input is-invalid" placeholder="seu.email@exemplo.com" required>
+                                <p class="feedback-message">E-mail inválido. Verifique o formato.</p>
+                            </div>
+                            <button type="submit" class="btn">Cadastrar</button>
+                            <button type="button" class="btn" disabled style="margin-left: var(--spacing-s);">Em Breve</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="main-footer">
+            <div class="container" style="padding: var(--spacing-m) 0;">
+                <p>&copy; 2025 Sovereign Store. Todos os direitos reservados.</p>
+            </div>
+        </footer>
+
+    </div>
+    
+</body>
+</html>
